@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "561303725073",
+    "project_id": "edsur-a3cd5",
+    "storage_bucket": "edsur-a3cd5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561303725073:android:86545bae816899ca9f3db0",
+        "android_client_info": {
+          "package_name": "andoid.tassio.tentativa1m"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561303725073-ii9cco89hli1sv8tdnnvlnl6q5c3feec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPoP0HhuroOFKjTbcknPKV8EQ956rSrww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561303725073-ii9cco89hli1sv8tdnnvlnl6q5c3feec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
