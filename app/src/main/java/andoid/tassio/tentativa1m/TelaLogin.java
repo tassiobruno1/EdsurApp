@@ -31,9 +31,6 @@ public class TelaLogin extends AppCompatActivity {
             }
         });
     }
-    @SuppressWarnings("unused")
-    private void IniciarComponentes() {
-    }
 
     private void iniciarComponentes(){
         text_tela_cadastro = findViewById(R.id.text_tela_cadastro);
