@@ -31,6 +31,10 @@ android {
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 dependencies {
+    implementation 'androidx.camera:camera-core:1.1.0'
+    implementation "androidx.camera:camera-camera2:1.0.0-rc01"
+    implementation 'androidx.camera:camera-camera2:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -39,6 +43,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.0.3'
     implementation 'com.google.firebase:firebase-inappmessaging-display:20.1.2'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
