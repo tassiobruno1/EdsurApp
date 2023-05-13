@@ -54,4 +54,6 @@ dependencies {
     implementation'com.google.firebase:firebase-firestore-ktx'
 
 
+    //Localização
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 }
