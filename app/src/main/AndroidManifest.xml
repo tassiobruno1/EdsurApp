@@ -23,6 +23,10 @@
         android:theme="@style/Theme.Tentativa1M"
         tools:targetApi="31">
         <activity
+            android:name=".TelaCamera"
+            android:label="Câmera"
+            android:exported="false"/>
+        <activity
             android:name=".TelaPrincipal"
             android:exported="false" />
         <activity

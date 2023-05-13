@@ -44,6 +44,7 @@ public class TelaPrincipal extends AppCompatActivity {
 
     FusedLocationProviderClient fusedLocationProviderClient;
     private final static int REQUEST_CODE_LOCATION=100;
+    private final static int REQUEST_CODE_CAMERA=101;
 
     private TextView nomeUsuario,emailUsuario;
     private Button bt_deslogar, bt_localizacao, bt_camera;
@@ -73,8 +74,15 @@ public class TelaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (verificaGPS()) {
-                    getLastLocation();
+                    acessarLocalizacao();
                 }
+            }
+        });
+
+        bt_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                acessarCamera();
             }
         });
     }
@@ -110,7 +118,7 @@ public class TelaPrincipal extends AppCompatActivity {
 
     }
 
-    private void getLastLocation() {
+    private void acessarLocalizacao() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
 
             fusedLocationProviderClient.getLastLocation()
@@ -136,14 +144,26 @@ public class TelaPrincipal extends AppCompatActivity {
                         }
                     });
         }else {
-            askPermission();
-
+            solicitaPermissaoLocalizacao();
         }
     }
 
-    private void askPermission() {
+    private void acessarCamera() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+            abrirCamera();
+        }else {
+            solicitaPermissaoCamera();
+        }
+    }
+
+    private void solicitaPermissaoLocalizacao() {
         ActivityCompat.requestPermissions(TelaPrincipal.this, new String[]
                 {Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE_LOCATION);
+    }
+
+    private void solicitaPermissaoCamera() {
+        ActivityCompat.requestPermissions(TelaPrincipal.this, new String[]
+                {Manifest.permission.CAMERA},REQUEST_CODE_CAMERA);
     }
 
     @Override
@@ -151,18 +171,40 @@ public class TelaPrincipal extends AppCompatActivity {
 
         if (requestCode==REQUEST_CODE_LOCATION){
             if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                getLastLocation();
+                acessarLocalizacao();
             }
             else {
-                Toast.makeText(this, "Required Permission", Toast.LENGTH_SHORT).show();
+                mostrarAlertaMensagem("Atenção", "Para usar esta funcionalidade é preciso permitir o acesso à sua localização!");
+            }
+        }
+
+        if (requestCode==REQUEST_CODE_CAMERA){
+            if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                abrirCamera();
+            }
+            else {
+                mostrarAlertaMensagem("Atenção", "Para usar esta funcionalidade é preciso permitir o acesso à sua câmera!");
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    private void abrirCamera() {
+        Intent intent = new Intent(this, TelaCamera.class);
+        startActivity(intent);
+    }
+
     private void mostrarLocalizacao(String mensagem) {
         new AlertDialog.Builder(this)
                 .setTitle("Localização atual")
+                .setMessage(mensagem)
+                .setNegativeButton("fechar", null)
+                .show();
+    }
+
+    private void mostrarAlertaMensagem(String titulo, String mensagem) {
+        new AlertDialog.Builder(this)
+                .setTitle(titulo)
                 .setMessage(mensagem)
                 .setNegativeButton("fechar", null)
                 .show();
